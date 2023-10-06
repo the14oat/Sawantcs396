@@ -45,3 +45,17 @@ def create_post(request):
     }
 
     return render(request, "pages/posts/create_post.html", context)
+
+# ========================
+# cslearning.com/posts/<id>
+# ========================
+
+def view_post(request, post_id):
+    
+    post = Post.objects.get(id=post_id)
+
+    context = {
+        "post": post
+    }
+
+    return render(request, "pages/posts/view_post.html", context)
