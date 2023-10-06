@@ -137,13 +137,47 @@ def courses(request):
 
     return render(request, "pages/courses/index.html", context)
 
+# ======================
+# cslearning.com/courses/1
+# ======================
+
 def view_course(request, course_id):
     course = Course.objects.get(id=course_id)
     lessons = Lesson.objects.filter(course=course_id)
+    exercises = Exercise.objects.filter(course=course_id)
 
     context = {
         "course": course,
-        "lessons": lessons
+        "lessons": lessons,
+        "exercises": exercises
     }
 
     return render(request, "pages/courses/view_course.html", context)
+
+# ======================
+# cslearning.com/courses/1/lessons/1
+# ======================
+
+def view_lesson(request, course_id, lesson_id):
+    lesson = Lesson.objects.get(id=lesson_id, course_id=course_id)
+
+    context = {
+        "lesson": lesson
+    }
+
+    return render(request, "pages/courses/lessons/index.html", context)
+
+# ======================
+# cslearning.com/courses/1/exercises/1
+# ======================
+
+def view_exercise(request, course_id, exercise_id):
+    exercise = Exercise.objects.get(id=exercise_id, course_id=course_id)
+    questions = MultipleChoice.objects.filter(exercise=exercise_id)
+
+    context = {
+        "exercise": exercise,
+        "questions": questions
+    }
+
+    return render(request, "pages/courses/exercises/index.html", context)

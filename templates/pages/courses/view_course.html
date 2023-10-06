@@ -24,14 +24,7 @@
                     <h3>{{lesson.name}}</h3>
                     <p>{{lesson.course.code}} <em>{{lesson.course.instructor.username}}</em></p>
                     <strong>{{lesson.created_date}}</strong>
-                </section>
-                <section class="lesson-body">
-                    <section class="lesson-body-content">
-                        <p>{{ lesson.body |safe }}</p>
-                    </section>
-                    <section class="lesson-body-footer">
-                        
-                    </section>
+                    <a href="{% url 'view_lesson' course.id lesson.id %}">View Lesson</a>
                 </section>
             </section>
             {% endfor %}
@@ -39,6 +32,25 @@
     {% else %}
         <section class="no-lessons">
             <p>No lessons available</p>
+        </section>
+    {% endif %}
+
+    {% if exercises %}
+        <section class="exercises">
+            {% for exercise in exercises %}
+            <section class="exercise">
+                <section class="exercise-header">
+                    <h3>{{exercise.name}}</h3>
+                    <p>{{exercise.course.code}} <em>{{exercise.course.instructor.username}}</em></p>
+                    <strong>{{exercise.created_date}}</strong>
+                    <a href="{% url 'view_exercise' course.id exercise.id %}">View Exercise</a>
+                </section>
+            </section>
+            {% endfor %}
+        </section>
+    {% else %}
+        <section class="no-exercises">
+            <p>No exercises available</p>
         </section>
     {% endif %}
 

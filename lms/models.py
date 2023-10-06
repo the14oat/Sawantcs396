@@ -51,3 +51,26 @@ class Lesson(models.Model):
 
     # Foreign Keys
     course = models.ForeignKey(Course, related_name="lessons", on_delete=models.CASCADE)
+
+class Exercise(models.Model):
+    # Model Attributes
+    name = models.CharField(max_length= 255)
+    description = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    # Foreign Keys
+    course = models.ForeignKey(Course, related_name="exercises", on_delete=models.CASCADE)
+
+class MultipleChoice(models.Model):
+    # Model Attributes
+    questionName = models.TextField()
+    firstChoice = models.CharField(max_length= 255)
+    secondChoice = models.CharField(max_length= 255)
+    thirdChoice = models.CharField(max_length= 255)
+    fourthChoice = models.CharField(max_length= 255)
+    correctChoice = models.CharField(max_length= 255)
+    earnedPoints = models.IntegerField()
+
+    # Foreign Keys
+    exercise = models.ForeignKey(Exercise, related_name="multiple_choices", on_delete=models.CASCADE)

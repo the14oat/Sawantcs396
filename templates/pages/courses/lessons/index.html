@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="lesson">
+    <section class="lesson-header">
+        <h3>{{lesson.name}}</h3>
+        <p>{{lesson.course.code}} <em>{{lesson.course.instructor.username}}</em></p>
+        <strong>{{lesson.created_date}}</strong>
+        <!-- MAKE A LINK TO VIEW THE LESSON BODY -->
+    </section>
+    <section class="lesson-body">
+        {{lesson.body |safe}}
+    </section>
+</section>
+
+
+{% endblock content %}

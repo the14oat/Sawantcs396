@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="exercise">
+    <section class="exercise-header">
+        <h3>{{exercise.name}}</h3>
+        <p>{{exercise.course.code}} <em>{{exercise.course.instructor.username}}</em></p>
+        <strong>{{exercise.created_date}}</strong>
+    </section>
+
+    <section class="exercise-body">
+        {% if questions %}
+            <form action="." method="POST">
+                {% csrf_token %}
+                {% for question in questions %}
+                <section class="question-header">
+                    <h3>{{question.questionName}} - {{question.earnedPoints}} pts</h3>
+                </section>
+                <section class="question">
+                    <section class="firstChoice">
+                        <input type="radio" name="{{question.questionName}}" value="1">
+                        <label for="1">{{question.firstChoice}}</label>
+                    </section>
+                </section>
+                <section class="question">
+                    <section class="secondChoice">
+                        <input type="radio" name="{{question.questionName}}" value="2">
+                        <label for="2">{{question.secondChoice}}</label>
+                    </section>
+                </section>
+                <section class="question">
+                    <section class="thirdChoice">
+                        <input type="radio" name="{{question.questionName}}" value="3">
+                        <label for="3">{{question.thirdChoice}}</label>
+                    </section>
+                </section>
+                <section class="question">
+                    <section class="fourthChoice">
+                        <input type="radio" name="{{question.questionName}}" value="4">
+                        <label for="4">{{question.fourthChoice}}</label>
+                    </section>
+                </section>
+       
+                {% endfor %}
+                <button type="submit">Submit</button>
+            </form>
+            
+        {% else %}
+            <section class="no-questions">
+                <p>No questions available</p>
+            </section>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}
