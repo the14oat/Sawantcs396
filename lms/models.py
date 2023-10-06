@@ -5,3 +5,13 @@ from django.contrib.auth.models import AbstractUser
 
 class Profile(AbstractUser):
     pass
+
+class Post(models.Model):
+    # Model Attributes
+    title = models.CharField(max_length= 255)
+    postBody = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    # Foreign Keys
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)

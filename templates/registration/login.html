@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form class="form" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <section class="form-inputs">
+        {% for field in form %}
+            <section class="form-input">{{ field.label_tag }} {{ field }}</section>
+        {% endfor %}
+    </section>
+    <button type="submit" class="btn accent middle right">Login</button>
+</form>
+
+{% endblock content %}

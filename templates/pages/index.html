@@ -2,8 +2,24 @@
 
 {% block content %}
 
-<main class="main">
-    <h1>HELLOO WORLD</h1>
-</main>
+
+    {% if posts %}
+    <section class="discussion-posts">
+        {% for post in posts %}
+        <section class="discussion-post">
+            <section class="post-header">
+                <h3>{{post.title}}</h3>
+                <p>Written by {{post.author.username}}</p>
+            </section>
+            <section class="post-body">
+                {{post.postBody}}
+            </section>
+        </section>
+        {% endfor %}
+    </section>
+    {% else %}
+    <h1>There are no discussion posts at this time. Create one!</h1>
+    {% endif %}
+
 
 {% endblock content %}
