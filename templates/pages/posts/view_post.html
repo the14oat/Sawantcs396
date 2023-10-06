@@ -12,4 +12,27 @@
     </section>
 </section>
 
+{% if comments %}
+<section class="comments">
+    {% for comment in comments %}
+    <section class="comment">
+        <section class="comment-header">
+            <h3>{{comment.author}}</h3>
+        </section>
+        <section class="comment-body">
+            <p>{{comment.commentBody}}</p>
+        </section>
+    </section>
+    {% endfor %}
+</section>
+{% else %}
+<p>There are no comments. Create one!</p>
+{% endif %}
+
+<form class="form" action="{% url 'create_post_comment' post_id=post.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+
 {% endblock content %}

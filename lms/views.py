@@ -53,9 +53,35 @@ def create_post(request):
 def view_post(request, post_id):
     
     post = Post.objects.get(id=post_id)
+    comments = PostComment.objects.filter(post=post_id)
+
+    createPostCommentForm = CreatePostCommentForm()
 
     context = {
-        "post": post
+        "post": post,
+        "comments": comments,
+        "form": createPostCommentForm
     }
 
     return render(request, "pages/posts/view_post.html", context)
+
+# ======================
+# cslearning.com/posts/1
+# ======================
+
+def create_post_comment(request, post_id):
+    if request.method == "POST":
+
+        post = Post.objects.get(id=post_id)
+        form = CreatePostCommentForm(request.POST)
+
+        if form.is_valid():
+            author = request.user
+
+            created_comment = form.save(commit=False)
+            created_comment.author = author
+            created_comment.post = post
+
+            created_comment.save()
+
+            return redirect("view_post", post_id)

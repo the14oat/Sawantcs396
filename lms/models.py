@@ -15,3 +15,13 @@ class Post(models.Model):
 
     # Foreign Keys
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+class PostComment(models.Model):
+    # Model Attributes
+    commentBody = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    # Foreign Keys
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)

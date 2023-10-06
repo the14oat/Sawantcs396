@@ -13,3 +13,8 @@ class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'postBody']
+
+class CreatePostCommentForm(forms.ModelForm):
+    class Meta:
+        model = PostComment
+        fields = ['commentBody']
