@@ -5,11 +5,14 @@
 
     {% if posts %}
     <section class="discussion-posts">
+        <h1>Discussion Posts ({{posts.count}})</h1>
+        <a href="{% url 'create_post' %}">Create a new post</a>
         {% for post in posts %}
         <section class="discussion-post">
             <section class="post-header">
                 <h3>{{post.title}}</h3>
                 <p>Written by {{post.author.username}}</p>
+                <a href="{% url 'view_post' post.id %}">Read more</a>
             </section>
             <section class="post-body">
                 {{post.postBody |safe }}
