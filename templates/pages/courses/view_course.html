@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <section class="course">
+        <section class="course-header">
+            <h3>{{course.code}}</h3>
+            <p>{{course.name}} <em>{{course.instructor.username}}</em></p>
+        </section>
+        <section class="course-body">
+            <section class="course-body-content">
+                <p>{{ course.description }}</p>
+            </section>
+            <section class="course-body-footer">
+                
+            </section>
+        </section>
+    </section>
+    {% if lessons %}
+        <section class="lessons">
+            {% for lesson in lessons %}
+            <section class="lesson">
+                <section class="lesson-header">
+                    <h3>{{lesson.name}}</h3>
+                    <p>{{lesson.course.code}} <em>{{lesson.course.instructor.username}}</em></p>
+                    <strong>{{lesson.created_date}}</strong>
+                </section>
+                <section class="lesson-body">
+                    <section class="lesson-body-content">
+                        <p>{{ lesson.body |safe }}</p>
+                    </section>
+                    <section class="lesson-body-footer">
+                        
+                    </section>
+                </section>
+            </section>
+            {% endfor %}
+        </section>
+    {% else %}
+        <section class="no-lessons">
+            <p>No lessons available</p>
+        </section>
+    {% endif %}
+
+
+{% endblock content %}

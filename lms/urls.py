@@ -10,4 +10,5 @@ urlpatterns = [
     path("posts/<int:post_id>/", views.view_post, name="view_post"),
     path("posts/<int:post_id>/comment/", views.create_post_comment, name="create_post_comment"),
     path("courses", views.courses, name="courses"),
+    path("courses/<int:course_id>/", views.view_course, name="view_course"),
 ]

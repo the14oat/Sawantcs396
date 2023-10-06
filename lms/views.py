@@ -127,12 +127,23 @@ def signup(request):
 
 def courses(request):
     
-    # we need to get the courses the belong to the logged in user
     user = request.user
-    courses = Course.objects.filter(students=user)    
+
+    courses = Course.objects.filter(students=user)
 
     context = {
         "courses": courses
     }
 
     return render(request, "pages/courses/index.html", context)
+
+def view_course(request, course_id):
+    course = Course.objects.get(id=course_id)
+    lessons = Lesson.objects.filter(course=course_id)
+
+    context = {
+        "course": course,
+        "lessons": lessons
+    }
+
+    return render(request, "pages/courses/view_course.html", context)
