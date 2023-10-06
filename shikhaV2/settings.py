@@ -131,6 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 BASE_DIR = Path(__file__).resolve().parent.parent
 AUTH_USER_MODEL = "lms.Profile"
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = "/"
 STATIC_ROOT = BASE_DIR / "static"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
