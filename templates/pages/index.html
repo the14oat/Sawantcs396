@@ -12,7 +12,7 @@
                 <p>Written by {{post.author.username}}</p>
             </section>
             <section class="post-body">
-                {{post.postBody}}
+                {{post.postBody |safe }}
             </section>
         </section>
         {% endfor %}

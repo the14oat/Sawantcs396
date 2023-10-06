@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <form class="form create-post-form" action="." method="post">
     {% csrf_token %}
+    {{ form.media }}
     {{ form.as_p }}
     <button type="submit">Create Discussion Post</button>
 </form>
