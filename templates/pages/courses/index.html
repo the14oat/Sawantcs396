@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if courses %}
+<section class="courses">
+    {% for course in courses %}
+    <section class="course">
+        <section class="course-header">
+            <h3>{{course.code}}</h3>
+            <p>{{course.name}} <em>{{course.instructor.username}}</em></p>
+        </section>
+        <section class="course-body">
+            <section class="course-body-content">
+                <p>{{ course.description }}</p>
+            </section>
+            <section class="course-body-footer">
+                
+            </section>
+        </section>
+    </section>
+    {% endfor %}
+</section>
+{% else %}
+<section class="no-courses">
+    <p>No courses available</p>
+</section>
+{% endif %}
+
+{% endblock content %}

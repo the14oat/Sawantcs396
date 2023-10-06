@@ -120,3 +120,19 @@ def signup(request):
     }
 
     return render(request, "registration/signup.html", context)
+
+# ======================
+# cslearning.com/courses
+# ======================
+
+def courses(request):
+    
+    # we need to get the courses the belong to the logged in user
+    user = request.user
+    courses = Course.objects.filter(students=user)    
+
+    context = {
+        "courses": courses
+    }
+
+    return render(request, "pages/courses/index.html", context)
